@@ -1,4 +1,5 @@
 #include "src/taxi.hpp"
+#include "src/plugin/node/tnode.hpp"
 #include <bits/stdc++.h>
 using namespace std;
 surface img1 = surface({
@@ -19,7 +20,7 @@ void f(int cnt) {
     }
 }
 int main() {
-    if (!init()) {
+    if (!init() || !initNode()) {
         printf("Error on initializing");
         return 0;
     }
