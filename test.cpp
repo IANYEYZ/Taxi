@@ -3,9 +3,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 surface img1 = surface({
-    {Char(color("#ffffff"), color("#30C5FF"), "  ")}
+    {Char(color("#00FFFF"), color("#ffffff"), "  "), Char(color("#00FFFF"), color("#ffffff"), "  "), Char(color("#00FFFF"), color("#ffffff"), "  ")},
+    {Char(color("#00FFFF"), color("#ffffff"), "  "), Char(color("#00FFFF"), color("#ffffff"), "  "), Char(color("#00FFFF"), color("#ffffff"), "  ")},
+    {Char(color("#00FFFF"), color("#ffffff"), "  "), Char(color("#00FFFF"), color("#ffffff"), "  "), Char(color("#00FFFF"), color("#ffffff"), "  ")}
 }, Char(color("#000000"), color("#ffffff"), "  "));
-sprite* s = new sprite(img1);
+surface img2 = surface({
+    {Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  ")},
+    {Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  ")},
+    {Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  ")}
+}, Char(color("#000000"), color("#ffffff"), "  "));
+animatedSprite* s = new animatedSprite({img1, img1, img1, img1, img1, img2, img2, img2, img2, img2});
 void spriteInit() {
 }
 void f(int cnt) {
@@ -25,6 +32,7 @@ int main() {
         return 0;
     }
     clear();
+    hideCursor();
     screen = makeSurface(100, 100, Char(color("#000000"), color("#ffffff"), "  "));
     s -> bind(spriteInit, f);
     registerNode(s);

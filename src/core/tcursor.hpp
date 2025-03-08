@@ -14,3 +14,9 @@ void cursor(pos p) {
     pos pNew = cursorPosPreprocessor(p);
     printf("\x1b[%d;%dH", pNew.x, pNew.y);
 }
+void hideCursor() {
+    printf("\x1b[?25l");
+}
+void showCursor() {
+    printf("\x1b[?25h");
+}

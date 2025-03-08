@@ -28,6 +28,18 @@ class sprite: public node {
         renderTo(img, sfc, p);
     }
 };
+class animatedSprite: public node {
+    protected:
+    vector<surface> imgs;
+    int cnt = 0;
+    public:
+    animatedSprite(vector<surface> sfcs): imgs(sfcs) {}
+    void render(surface &sfc) override {
+        renderTo(imgs[cnt], sfc, p);
+        cnt++;
+        if (cnt == imgs.size()) cnt = 0;
+    }
+};
 
 vector<node*> nodeList;
 void registerNode(node *nd) {
