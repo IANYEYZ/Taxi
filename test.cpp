@@ -1,5 +1,6 @@
 #include "src/taxi.hpp"
 #include "src/plugin/node/tnode.hpp"
+#include "src/plugin/ui/tui.hpp"
 #include <bits/stdc++.h>
 using namespace std;
 surface img1 = surface({
@@ -7,56 +8,31 @@ surface img1 = surface({
     {Char(color("#00FFFF"), color("#ffffff"), "  "), Char(color("#00FFFF"), color("#ffffff"), "  "), Char(color("#00FFFF"), color("#ffffff"), "  ")},
     {Char(color("#00FFFF"), color("#ffffff"), "  "), Char(color("#00FFFF"), color("#ffffff"), "  "), Char(color("#00FFFF"), color("#ffffff"), "  ")}
 }, Char(color("#000000"), color("#ffffff"), "  "));
-surface img2 = surface({
-    {Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  ")},
-    {Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  ")},
-    {Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  "), Char(color("#FF00FF"), color("#ffffff"), "  ")}
-}, Char(color("#000000"), color("#ffffff"), "  "));
-surface img3 = surface({
-    {Char(color("#FFFF00"), color("#ffffff"), "  "), Char(color("#FFFF00"), color("#ffffff"), "  "), Char(color("#FFFF00"), color("#ffffff"), "  ")},
-    {Char(color("#FFFF00"), color("#ffffff"), "  "), Char(color("#FFFF00"), color("#ffffff"), "  "), Char(color("#FFFF00"), color("#ffffff"), "  ")},
-    {Char(color("#FFFF00"), color("#ffffff"), "  "), Char(color("#FFFF00"), color("#ffffff"), "  "), Char(color("#FFFF00"), color("#ffffff"), "  ")}
-}, Char(color("#000000"), color("#ffffff"), "  "));
-animatedSprite* s = new animatedSprite({img1, img1, img1, img1, img1, img2, img2, img2, img2, img2});
-animatedSprite* s1 = new animatedSprite({img2, img2, img2, img2, img2, img3, img3, img3, img3, img3});
-void spriteInit() {
+UISurface ui;
+button* b = new button(img1, {0, 0});
+void f() {
+    // printf("Clicked!");
 }
-void f(int cnt) {
-    if (Input.isKeyPressed('A')) {
-        s -> move({0, -1});
-    } else if (Input.isKeyPressed('D')) {
-        s -> move({0, 1});
-    } else if (Input.isKeyPressed('W')) {
-        s -> move({-1, 0});
-    } else if (Input.isKeyPressed('S')) {
-        s -> move({1, 0});
-    }
-}
-void g(int cnt) {
-    if (Input.isKeyPressed(VK_LEFT)) {
-        s1 -> move({0, -1});
-    } else if (Input.isKeyPressed(VK_RIGHT)) {
-        s1 -> move({0, 1});
-    } else if (Input.isKeyPressed(VK_UP)) {
-        s1 -> move({-1, 0});
-    } else if (Input.isKeyPressed(VK_DOWN)) {
-        s1 -> move({1, 0});
-    }
+void renderUI(int cnt) {
+    renderTo(ui, screen, {0, 0});
+    // b -> render(screen);
 }
 int main() {
     if (!init() || !initNode()) {
         printf("Error on initializing");
         return 0;
     }
+    closeFastEdit();
+    // std::cout << "HERE!" << std::endl;
+    screen = makeSurface(30, 30);
     clear();
     hideCursor();
-    screen = makeSurface(100, 100, Char(color("#000000"), color("#ffffff"), "  "));
-    s -> bind(spriteInit, f);
-    s1 -> bind(spriteInit, g);
-    registerNode(s);
-    registerNode(s1);
-    // loopEvent.subscribe(f);
-    cursorPosPreprocessor = y2;
     setFPS(60);
+    cursorPosPreprocessor = y2;
+    b -> clickEvent.subscribe(f);
+    ui = ui.makeSurface(30, 30);
+    ui.registerUIElement(b);
+    ui.bind();
+    loopEvent.subscribe(renderUI);
     return mainloop<diffRender>();
 }

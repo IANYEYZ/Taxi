@@ -25,7 +25,7 @@ class diffRender: public render {
             for (int j = 0; j < sfc[0].size(); j++) {
                 if (sfc[i][j] != lst[i][j]) {
                     // printf("%d %d", i, j);
-                    cursor({p.x + i, p.y + j});
+                    cursor({p.x + i + 1, p.y + j});
                     sfc[i][j].print();
                 }
             }
@@ -54,8 +54,8 @@ int mainloop() {
     int cnt = 0;
     initEvent.emit();
     while (taxiRunning) {
-        renderer.loop(screen, pos(0, 0));
         loopEvent.emit(cnt);
+        renderer.loop(screen, pos(0, 0));
         cnt++;
         Sleep((int)waiting);
     }

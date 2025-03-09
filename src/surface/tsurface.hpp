@@ -15,7 +15,7 @@ class surface: public vector<vector<Char> > {
 };
 surface screen;
 
-void renderTo(surface from, surface& to, pos p) {
+void renderTo(surface &from, surface& to, pos p) {
     // This validate the coordinate
     // If only part can be rendered, only render the renderable part
     // If no part can be rendered, no will be rendered

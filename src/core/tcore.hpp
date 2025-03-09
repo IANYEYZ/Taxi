@@ -3,6 +3,7 @@
 #include "tcolor.hpp"
 #include "tchar.hpp"
 #include "tcursor.hpp"
+#include "twindow.hpp"
 bool initCore() {
 #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -13,10 +14,19 @@ bool initCore() {
 
     dwMode |= 0x0004;
     if (!SetConsoleMode(hOut, dwMode)) { return false; }
-    return true;
+    return initWindows();
 #else
     // do nothing
 #endif
+}
+void closeFastEdit() {
+    #ifdef _WIN32
+	HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+	DWORD mode;
+	GetConsoleMode(hStdin, &mode);
+	mode &= ~ENABLE_QUICK_EDIT_MODE;
+	SetConsoleMode(hStdin, mode);
+    #endif
 }
 void clear() {
     printf("\x1b[0m");
