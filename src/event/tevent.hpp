@@ -1,17 +1,32 @@
 // simple event system
 #pragma once
 #include "../tinclude.hpp"
+/**
+ * The event object, functions can subscribed to it to listen to this event
+ * @tparam T the type of value that's passed to functions that subscribe to the event, if it's given empty or void, then no value will be passed to functions
+ * @ingroup event
+ */
 template <typename T = void>
 class Event {
     private:
     vector<function<void(T)> > v;
     public:
+    /**
+     * Initialize the Event object
+     */
     Event() {}
+    /**
+     * Emit(trigger) the event, calling all the functions that subscribes to it
+     */
     void emit(T val) {
         for (auto i:v) {
             i(val);
         }
     }
+    /**
+     * Let a function subscribe to this Event object
+     * @param f the function that'll subscribe to the Event object
+     */
     void subscribe(function<void(T)> f) {
         v.push_back(f);
     }

@@ -4,6 +4,12 @@
 #include "tchar.hpp"
 #include "tcursor.hpp"
 #include "twindow.hpp"
+/**
+ * Init the console, only needed for windows
+ * @return true if the initializing process works flawlessly, false when there's some error
+ * NOTE: handler getting is also called in this function
+ * @ingroup core
+ */
 bool initCore() {
 #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -19,6 +25,9 @@ bool initCore() {
     // do nothing
 #endif
 }
+/**
+ * Close fast edit mode, which is default open for win10
+ */
 void closeFastEdit() {
     #ifdef _WIN32
 	HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);

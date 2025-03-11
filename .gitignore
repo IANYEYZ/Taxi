@@ -1,1 +1,5 @@
 test.exe
+docs/*
+site/*
+*.yaml
+.vscode/*
