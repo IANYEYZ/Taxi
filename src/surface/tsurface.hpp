@@ -55,6 +55,18 @@ void renderTo(surface &from, surface& to, pos p) {
     }
 }
 /**
+ * Render `from` to `to` at position p, `to` is passed by refrence because that make polymorphism eaiser and support modifying `to`
+ * NOTE: this is implemented with `renderTo` which requires `from` and `to` both passed by refrence, but now `from` is passed by value
+ * @param from the surface that need to be rendered to `to`
+ * @param to the final surface
+ * @param p the position that `from` need to be drawn to
+ * @ingroup surface
+ */
+void drawTo(surface from, surface &to, pos p) {
+    surface from_ = from;
+    renderTo(from, to, p);
+}
+/**
  * Make a surface with the given height, width, and background Char
  * @param height the height of the new surface
  * @param width the width of the new surface
