@@ -3,7 +3,6 @@
 /**
  * The Input system
  * The class is called _Input, because the actual used will be a object that's typed _Input, named Input
- * @ingroup input
  */
 class _Input {
     public:

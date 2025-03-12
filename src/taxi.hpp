@@ -6,6 +6,7 @@
 #include "render/trender.hpp"
 #include "event/tevent.hpp"
 #include "input/tinput.hpp"
+#include "font/tfont.hpp"
 /**
  * Init function, now it directly returns initCore
  * @return the return value of `initCore()`

@@ -4,7 +4,6 @@
 /**
  * The event object, functions can subscribed to it to listen to this event
  * @tparam T the type of value that's passed to functions that subscribe to the event, if it's given empty or void, then no value will be passed to functions
- * @ingroup event
  */
 template <typename T = void>
 class Event {

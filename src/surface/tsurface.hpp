@@ -6,7 +6,6 @@
 /**
  * The surface, anything drawn to the console with the renderer, in theory, all first be drawn on to a surface
  * This is the most "trivial" surface, which is basically just a `vector<vector<Char> >` and another `Char`(as the background)
- * @ingroup surface
  */
 class surface: public vector<vector<Char> > {
     public:
@@ -38,7 +37,6 @@ surface screen;
  * @param from the surface that need to be rendered to `to`
  * @param to the final surface
  * @param p the position that `from` need to be drawn to
- * @ingroup surface
  */
 void renderTo(surface &from, surface& to, pos p) {
     // This validate the coordinate
@@ -60,7 +58,6 @@ void renderTo(surface &from, surface& to, pos p) {
  * @param from the surface that need to be rendered to `to`
  * @param to the final surface
  * @param p the position that `from` need to be drawn to
- * @ingroup surface
  */
 void drawTo(surface from, surface &to, pos p) {
     surface from_ = from;
@@ -71,7 +68,6 @@ void drawTo(surface from, surface &to, pos p) {
  * @param height the height of the new surface
  * @param width the width of the new surface
  * @param bgChar the background Char
- * @ingroup surface
  */
 surface makeSurface(int height, int width, Char bgChar = Char()) {
     return surface(vector<vector<Char> >(height, vector<Char>(width, bgChar)), bgChar);

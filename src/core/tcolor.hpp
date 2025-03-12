@@ -2,7 +2,6 @@
 #include "../tinclude.hpp"
 /**
  * Color class, store a color that can be set as either background color or foreground color
- * @ingroup core
  */
 struct color {
     char r, g, b;

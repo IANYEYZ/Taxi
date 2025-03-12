@@ -4,7 +4,6 @@
 /**
  * Char class, with a background color, foreground color, and a string
  * When output it either use C++ style(stream operator) or `print` function, background color will be set to bg, foreground color will be set to fg, and the string will be printed out
- * @ingroup core
  */
 struct Char {
     color bg, fg;

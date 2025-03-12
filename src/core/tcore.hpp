@@ -8,7 +8,6 @@
  * Init the console, only needed for windows
  * @return true if the initializing process works flawlessly, false when there's some error
  * NOTE: handler getting is also called in this function
- * @ingroup core
  */
 bool initCore() {
 #ifdef _WIN32

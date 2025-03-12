@@ -2,7 +2,6 @@
 #include "../tinclude.hpp"
 /**
  * Class of position, which is the same as pair<int, int> just with a more reasonable naming in this specific case
- * @ingroup core
  */
 struct pos {
     int x, y;

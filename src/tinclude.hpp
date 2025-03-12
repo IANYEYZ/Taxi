@@ -4,6 +4,7 @@
 #include <utility>
 #include <vector>
 #include <string>
+#include <tuple>
 #include <map>
 using std::vector;
 using std::string;
@@ -11,6 +12,8 @@ using std::ostream;
 using std::pair;
 using std::function;
 using std::map;
+using std::tuple;
+using std::max;
 #ifdef _WIN32
 #include <windows.h>
 #endif
