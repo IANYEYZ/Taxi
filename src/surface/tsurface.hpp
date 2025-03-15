@@ -37,14 +37,16 @@ surface screen;
  * @param from the surface that need to be rendered to `to`
  * @param to the final surface
  * @param p the position that `from` need to be drawn to
+ * @param transparentChar the char that's considered "transparent", i.e. it won't be drawn to `to`
  */
-void renderTo(surface &from, surface& to, pos p) {
+void renderTo(surface &from, surface& to, pos p, Char transparentChar = Char(color(), color(), "__taxi__transparent__char__")) {
     // This validate the coordinate
     // If only part can be rendered, only render the renderable part
     // If no part can be rendered, no will be rendered
     // If all can be rendered, all will be rendered
     for (int i = 0; i < from.size(); i++) {
         for (int j = 0; j < from.size(); j++) {
+            if (from[i][j] == transparentChar) { continue; }
             int x = p.x + i;
             int y = p.y + j;
             if (x >= to.size() || y >= to[0].size()) { continue; }
@@ -58,10 +60,11 @@ void renderTo(surface &from, surface& to, pos p) {
  * @param from the surface that need to be rendered to `to`
  * @param to the final surface
  * @param p the position that `from` need to be drawn to
+ * @param transparentChar the char that's considered "transparent", i.e. it won't be drawn to `to`
  */
-void drawTo(surface from, surface &to, pos p) {
+void drawTo(surface from, surface &to, pos p, Char transparentChar = Char(color(), color(), "__taxi__transparent__char__")) {
     surface from_ = from;
-    renderTo(from, to, p);
+    renderTo(from, to, p, transparentChar);
 }
 /**
  * Make a surface with the given height, width, and background Char
@@ -71,4 +74,13 @@ void drawTo(surface from, surface &to, pos p) {
  */
 surface makeSurface(int height, int width, Char bgChar = Char()) {
     return surface(vector<vector<Char> >(height, vector<Char>(width, bgChar)), bgChar);
+}
+surface reskin(surface sfc, color fg, color bg) {
+    for (int i = 0; i < sfc.size(); i++) {
+        for (int j = 0; j < sfc[0].size(); j++) {
+            sfc[i][j].fg = fg;
+            sfc[i][j].bg = bg;
+        }
+    }
+    return sfc;
 }

@@ -14,6 +14,9 @@ using std::function;
 using std::map;
 using std::tuple;
 using std::max;
+using std::get;
+using std::make_pair;
+using std::make_tuple;
 #ifdef _WIN32
 #include <windows.h>
 #endif
