@@ -19,7 +19,7 @@ class font {
      * @param fg fg
      * @param bg bg
      */
-    font(map<char, tuple<surface, int, int> > mp, color fg = color(255, 255, 255), color bg = color()): mp(mp), fg(fg), bg(bg) {}
+    font(map<char, tuple<surface, int, int> > mp, color fg = color(0, 0, 0), color bg = color(255, 255, 255)): mp(mp), fg(fg), bg(bg) {}
     /**
      * Draw a str to a surface with this font
      * @param str the string that needed to be drawn
@@ -37,6 +37,8 @@ class font {
             drawTo(reskin(get<0>(mp[i]), fg, bg), res, p);
             p.y += get<2>(mp[i]);
         }
+        printf("Working!\n");
+        res[0][0].print();
         return res;
     }
 };
