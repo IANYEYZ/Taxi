@@ -38,14 +38,17 @@ class diffRender: public render {
         if (sfc.size() != lst.size() || sfc[0].size() != lst[0].size()) {
             throw "surface should has same size when using diffRender";
         }
+        // printf("%d %d\n", sfc.size(), sfc[0].size());
         for (int i = 0; i < sfc.size(); i++) {
             for (int j = 0; j < sfc[0].size(); j++) {
-                if (sfc[i][j] != lst[i][j]) {
+                if (i == 0 && j == 0) {
                     // printf("%d %d", i, j);
-                    cursor({p.x + i + 1, p.y + j});
+                    cursor({p.x + i + 1, p.y + j + 1});
+                    //if (i == 0 && j == 0) printf("%d %d %d %s", sfc[i][j].fg.r, sfc[i][j].fg.g, sfc[i][j].fg.b, sfc[i][j].ch.c_str());
                     sfc[i][j].print();
                 }
             }
+            // printf("\n");
         }
         lst = sfc;
     }

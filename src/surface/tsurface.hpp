@@ -13,7 +13,7 @@ class surface: public vector<vector<Char> > {
     /**
      * Initializer, initialize it with empty bg and vector
      */
-    surface() {}
+    surface():bg(Char()) {}
     /**
      * Initializer, initialize with a vector and a background Char
      * @param sur the surface that's initialized to
@@ -39,13 +39,13 @@ surface screen;
  * @param p the position that `from` need to be drawn to
  * @param transparentChar the char that's considered "transparent", i.e. it won't be drawn to `to`
  */
-void renderTo(surface &from, surface& to, pos p, Char transparentChar = Char(color(), color(), "__taxi__transparent__char__")) {
+void renderTo(surface &from, surface &to, pos p, Char transparentChar = Char(color(), color(), "__taxi__transparent__char__")) {
     // This validate the coordinate
     // If only part can be rendered, only render the renderable part
     // If no part can be rendered, no will be rendered
     // If all can be rendered, all will be rendered
     for (int i = 0; i < from.size(); i++) {
-        for (int j = 0; j < from.size(); j++) {
+        for (int j = 0; j < from[0].size(); j++) {
             // if (from[i][j] == transparentChar) { continue; }
             int x = p.x + i;
             int y = p.y + j;
@@ -63,7 +63,7 @@ void renderTo(surface &from, surface& to, pos p, Char transparentChar = Char(col
  * @param transparentChar the char that's considered "transparent", i.e. it won't be drawn to `to`
  */
 void drawTo(surface from, surface &to, pos p, Char transparentChar = Char(color(), color(), "__taxi__transparent__char__")) {
-    surface from_ = from;
+    surface from_(from, from.bg);
     renderTo(from_, to, p, transparentChar);
 }
 /**
