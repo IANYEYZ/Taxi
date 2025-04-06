@@ -9,6 +9,7 @@ class _Input {
     _Input() {}
     /**
      * Check if a given key is pressed or not
+     * @note now works only on windows system
      * @param key the key value that need to be checked, can be 'a' or virtual key value like VK_UP
      * @return true if the key is pressed, false otherwise
      */
@@ -20,6 +21,7 @@ class _Input {
     }
     /**
      * Get the mouse postion, in character(for example, (1, 1) means that 1 line break and 1 character will reach the mouse position)
+     * @note now works only on windows system
      * @return the mouse position
      */
     pos getMousePosition() {
