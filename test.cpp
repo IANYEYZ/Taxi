@@ -17,16 +17,18 @@ int main() {
     }
     // closeFastEdit();
     // std::cout << "HERE!" << std::endl;
-    screen = makeSurface(10, 10);
+    screen = makeSurface(20, 20);
     clear();
     hideCursor();
     setFPS(60);
     // cout << surf[0].size() << "\n";
     renderTo(surf, screen, {0, 0});
     // cout << screen[0][0] << "\n";
-    writeTo("hello world", screen, {0, 0});
+    writeTo("Hello World!", screen, {0, 0});
+    // cout << screen[0][1] << "\n";
     // while (true) {}
     // writeTo("Hello, world!", screen, {0, 0});
     loopEvent.subscribe(f);
+    // while (true) {}
     return mainloop<diffRender>();
 }

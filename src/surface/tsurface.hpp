@@ -46,7 +46,7 @@ void renderTo(surface &from, surface &to, pos p, Char transparentChar = Char(col
     // If all can be rendered, all will be rendered
     for (int i = 0; i < from.size(); i++) {
         for (int j = 0; j < from[0].size(); j++) {
-            // if (from[i][j] == transparentChar) { continue; }
+            if (from[i][j] == transparentChar) { continue; }
             int x = p.x + i;
             int y = p.y + j;
             if (x >= to.size() || y >= to[0].size()) { continue; }
