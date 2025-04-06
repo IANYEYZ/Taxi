@@ -44,6 +44,9 @@ class font {
     }
 };
 
+/**
+ * The "normal" font, i.e. a direct 1 to 1 bind for characters
+ */
 font normal = font(map<char, tuple<surface, int, int> >({
     make_pair<char, tuple<surface, int, int> >('a', make_tuple<surface, int, int>(makeSurface(1, 1, Char(color(), color(), "a")), 1, 1)),
     make_pair<char, tuple<surface, int, int> >('b', make_tuple<surface, int, int>(makeSurface(1, 1, Char(color(), color(), "b")), 1, 1)),
@@ -139,6 +142,13 @@ font normal = font(map<char, tuple<surface, int, int> >({
     make_pair<char, tuple<surface, int, int> >(' ', make_tuple<surface, int, int>(makeSurface(1, 1, Char(color(), color(), " ")), 1, 1))
 }));
 
+/**
+ * Write a string of text to the given surface at given position with given font
+ * @param wd the string of text
+ * @param sfc the given surface
+ * @param p the given position
+ * @param ft the given font
+ */
 void writeTo(string wd, surface &sfc, pos p, font ft = normal) {
     drawTo(ft.toSurface(wd, Char()), sfc, p, Char());
 }

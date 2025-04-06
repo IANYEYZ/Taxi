@@ -75,6 +75,13 @@ void drawTo(surface from, surface &to, pos p, Char transparentChar = Char(color(
 surface makeSurface(int height, int width, Char bgChar = Char()) {
     return surface(vector<vector<Char> >(height, vector<Char>(width, bgChar)), bgChar);
 }
+/**
+ * "Reskin" a surface, i.e. change it's foreground color(fg) and background color(bg) to given colors
+ * @param sfc the surface that'll be "reskined"
+ * @param fg the new foreground color
+ * @param bg the new background color
+ * @return the "reskined" surface
+ */
 surface reskin(surface sfc, color fg, color bg) {
     for (int i = 0; i < sfc.size(); i++) {
         for (int j = 0; j < sfc[0].size(); j++) {
