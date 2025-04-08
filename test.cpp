@@ -3,12 +3,8 @@
 #include "src/plugin/ui/tui.hpp"
 #include <bits/stdc++.h>
 using namespace std;
-surface surf = makeSurface(1, 1, Char(color("#111111"), color("#00ff00"), "a"));
 void f(int cnt) {
-    // drawTo(makeSurface(1, 1, Char(color("#111111"), color("#00ff00"), "a")), screen, {0, 0});
-    writeTo("hello world", screen, {0, 0});
-    // screen[0][0] = Char(color("#111111"), color("#00ff00"), "a");
-    // screen[0][0].print();
+    writeTo("Hello world!", screen, {0, 0});
 }
 int main() {
     if (!init() || !initNode()) {
@@ -21,14 +17,6 @@ int main() {
     clear();
     hideCursor();
     setFPS(60);
-    // cout << surf[0].size() << "\n";
-    renderTo(surf, screen, {0, 0});
-    // cout << screen[0][0] << "\n";
-    writeTo("Hello World!", screen, {0, 0});
-    // cout << screen[0][1] << "\n";
-    // while (true) {}
-    // writeTo("Hello, world!", screen, {0, 0});
     loopEvent.subscribe(f);
-    // while (true) {}
     return mainloop<diffRender>();
 }

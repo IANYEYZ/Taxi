@@ -10,14 +10,14 @@ class font {
     color fg, bg; // foreground color and background color
     public:
     /**
-     * Initializer, initialize to empty
+     * Initializer, initialize to empty font
      */
     font() {}
     /**
      * Initializer, set the mp, fg, bg manually
-     * @param mp mp
-     * @param fg fg
-     * @param bg bg
+     * @param mp mp, a map from char to tuple<surface, int, int>, which is (surface, height, width)
+     * @param fg fg, foreground color
+     * @param bg bg, background color
      */
     font(map<char, tuple<surface, int, int> > mp, color fg = color(255, 255, 255), color bg = color(0, 0, 0)): mp(mp), fg(fg), bg(bg) {}
     /**
@@ -37,10 +37,16 @@ class font {
             drawTo(reskin(get<0>(mp[i]), fg, bg), res, p, bgChar);
             p.y += get<2>(mp[i]);
         }
-        // printf("Working!\n");
-        // printf("%d %d %d %s\n", res[0][0].fg.r, res[0][0].fg.g, res[0][0].fg.b, res[0][0].ch.c_str());
-        // res[0][1].print();
         return res;
+    }
+    /**
+     * Return a recolored version of the current font
+     * @param fg the new foreground color
+     * @param bg the new background color
+     * @return the new font
+     */
+    font recolor(color fg, color bg) {
+        return font(mp, fg, bg);
     }
 };
 
